@@ -8,7 +8,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--octree", type=str, required=False,
                     default='../../octree')
 parser.add_argument("--cuda", type=str, required=False,
-                    default='/usr/local/cuda-10.1')
+                    default='/usr/local/cuda-11.3')
 parser.add_argument('--key64', type=str, required=False,
                     default='false')
 parser.add_argument('--cc', type=str, required=False,
@@ -24,17 +24,17 @@ LIBS_DIR = os.path.dirname(os.path.realpath(__file__))
 TF_CFLAGS = " ".join(tf.sysconfig.get_compile_flags())
 TF_LFLAGS = " ".join(tf.sysconfig.get_link_flags())
 
-## g++-4.8
+## g++-9.3
 env_gcc = 'echo using g++ '
-if CC == 'g++-4.8':
+if CC == 'g++-9.3':
   cmds = [
     'sudo apt-get update',
-    'sudo apt-get install gcc-4.8 --yes',
-    'sudo apt-get install g++-4.8 --yes',]
+    'sudo apt-get install gcc-9.3 --yes',
+    'sudo apt-get install g++-9.3 --yes',]
   cmd = ' && '.join(cmds)
   print(cmd)
   os.system(cmd)
-  env_gcc = 'echo using g++-4.8 && export CC=gcc-4.8 && export CXX=g++-4.8 '
+  env_gcc = 'echo using g++-9.3 && export CC=gcc-9.3 && export CXX=g++-9.3 '
 
 
 ## build octree
